@@ -1,9 +1,9 @@
 // Copyright Isaac Tellez 2021
 
+#include "Grabber.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
-#include "Grabber.h"
 
 #define OUT
 
@@ -52,18 +52,37 @@ void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grabber pressed"));
 
-	GetFirstPhysicsBodyInReach();
+	FVector PlayerVPLocation;
+	FRotator PlayerVPRotation;
+
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
+		OUT PlayerVPLocation,
+		OUT PlayerVPRotation
+	);
+
+	FVector LineTraceEnd = PlayerVPLocation + PlayerVPRotation.Vector() * Reach;
+
+	FHitResult HitResult = GetFirstPhysicsBodyInReach();
+	UPrimitiveComponent* ComponentGrabbed = HitResult.GetComponent();
 
 	// Try and reach any actors with a physics body collision channel set
 
 	// If hit, attach the physics handle
-	// TODO attach physics handle
+	if (HitResult.GetActor())
+	{
+		PhysicsHandle->GrabComponentAtLocation(
+			ComponentGrabbed,
+			NAME_None,
+			LineTraceEnd
+		);
+	}
 }
 
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grabber released"));
-	// TODO remove/release the physics handle
+	
+	PhysicsHandle->ReleaseComponent();
 }
 
 // Called every frame
@@ -71,9 +90,22 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	//If physics handle is attached, move the object we are holding
+	FVector PlayerVPLocation;
+	FRotator PlayerVPRotation;
 
-	// GetFirstPhysicsBodyInReach();	
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
+		OUT PlayerVPLocation,
+		OUT PlayerVPRotation
+	);
+
+	FVector LineTraceEnd = PlayerVPLocation + PlayerVPRotation.Vector() * Reach;
+
+	//If physics handle is attached
+	if (PhysicsHandle->GrabbedComponent)
+	{
+		// Move the object we are holding
+		PhysicsHandle->SetTargetLocation(LineTraceEnd);
+	}
 }
 
 
@@ -82,6 +114,7 @@ FHitResult UGrabber::GetFirstPhysicsBodyInReach() const
 	// Get player's viewpoint
 	FVector PlayerVPLocation;
 	FRotator PlayerVPRotation;
+
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		OUT PlayerVPLocation,
 		OUT PlayerVPRotation
