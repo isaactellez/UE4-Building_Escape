@@ -44,9 +44,6 @@ private:
 	float TargetMass = 50.f;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
-
-	UPROPERTY(EditAnywhere)
-	AActor* ActorThatOpen;
+	ATriggerVolume* PressurePlate = nullptr;
 		
 };
