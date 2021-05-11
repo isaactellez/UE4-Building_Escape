@@ -33,7 +33,14 @@ private:
 	void Release();
 	void FindPhysicsHandle();
 	void SetupInputComponent();
+
 	//Return the first physics body within reach
 	FHitResult GetFirstPhysicsBodyInReach() const;
+
+	//Return a vector that represents the reach of an actor
+	FVector GetLineTraceEnd() const;
+
+	//Get Players position in the world
+	FVector GetPlayerWorldPos() const;
 		
 };
