@@ -27,6 +27,12 @@ public:
 	void OpenDoor(float DeltaTime);
 	void CloseDoor(float DeltaTime);
 	float TotalMassOfActors() const;
+	void FindPressurePlate() const;
+	void FindAudioComponent();
+	void PlayDoorSound();
+
+	//Tracks wether sound has been played
+	bool bDoorOpen = false;
 
 private:
 	float InitialYaw;
@@ -45,5 +51,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	UAudioComponent* AudioComponent = nullptr;
 		
 };

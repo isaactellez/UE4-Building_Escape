@@ -1,0 +1,46 @@
+[33mcommit 7d43f9d650387db5e7d4e046cfd88a09879bc808[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Tue May 11 15:22:59 2021 -0500
+
+    Update README.md
+
+[33mcommit e1a4b8d7bca1f1f0fd9a5c85e42f1ffe76d552c5[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Tue May 11 15:13:51 2021 -0500
+
+    Refactor to protect null pointer cases
+
+[33mcommit 5471288cc2fc6b9c967afc5963838cab4b0cb5fe[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Tue May 11 14:48:58 2021 -0500
+
+    Added PressurePlate weight limit
+
+[33mcommit be9c5fc79d25fdc8819caa76e904005b9e0c82c5[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Tue May 11 12:57:25 2021 -0500
+
+    Refactored code for clarity
+
+[33mcommit a0e849ab194c1419430c9c97c5d3aa0362b00114[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Fri Apr 30 18:03:16 2021 -0500
+
+    Added grab and release functionality
+    
+    Grab and release methods work for physics bodies.
+
+[33mcommit c9ebf6e7ed4bdb9abf3965b888983f29a86b48e1[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Fri Apr 30 17:28:32 2021 -0500
+
+    Added release
+    
+    Added release function.
+    Performance improvements by refactoring code.
+
+[33mcommit 5323f382317e7a84694a627be35248ace0195a6d[m
+Author: isaactellez <isaactb12@gmail.com>
+Date:   Fri Apr 30 15:41:03 2021 -0500
+
+    Initial commit
